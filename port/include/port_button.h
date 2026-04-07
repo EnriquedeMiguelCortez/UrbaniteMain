@@ -1,9 +1,9 @@
 /**
  * @file port_button.h
  * @brief Header for the portable functions to interact with the HW of the buttons. The functions must be implemented in the platform-specific code.
- * @author alumno1
- * @author alumno2
- * @date fecha
+ * @author Enrique De Miguel Cortez
+ * @author Sergio Rojas Castilla
+ * @date 22/02/25
  */
 
 #ifndef PORT_BUTTON_H_
@@ -16,25 +16,70 @@
 
 /* Defines and enums ----------------------------------------------------------*/
 /* Defines */
-// Define here all the button identifiers that are used in the system
 
-#define PORT_PARKING_BUTTON_ID /* ID of the button for reversing and for entering parking mode*/
-#define PORT_PARKING_BUTTON_DEBOUNCE_TIME_MS /* Debounce time of the button in ms*/
+/**
+ * @brief Identifier for the parking mode button.
+ */
+#define PORT_PARKING_BUTTON_ID 0
+
+/**
+ * @brief Debounce time for button press detection (in milliseconds).
+ */
+#define PORT_PARKING_BUTTON_DEBOUNCE_TIME_MS 0
 
 /* Function prototypes and explanation -------------------------------------------------*/
 
-void port_button_init (uint32_t button_id); /* Configure the HW specifications of a given button*/
+/**
+ * @brief Initializes the hardware configuration for the specified button.
+ *
+ * @param button_id Identifier of the button (index in the buttons array).
+ */
+void port_button_init (uint32_t button_id); 
 
-bool port_button_get_pressed (uint32_t button_id); /* 	Return the status of the button (pressed or not)*/
+/**
+ * @brief Checks if the specified button has been pressed.
+ *
+ * @param button_id Identifier of the button (index in the buttons array).
+ * @return true if the button is pressed, false otherwise.
+ */
+bool port_button_get_pressed (uint32_t button_id); 
 
-bool port_button_get_value (uint32_t button_id); /* Get the value of the GPIO connected to the button*/
+/**
+ * @brief Reads the current value of the GPIO pin associated with the button.
+ *
+ * @param button_id Identifier of the button (index in the buttons array).
+ * @return true if the GPIO value is high, false if it is low.
+ */
+bool port_button_get_value (uint32_t button_id);
 
-void port_button_set_pressed (uint32_t button_id, bool pressed); /* Set the status of the button (pressed or not)*/	
+/**
+ * @brief Sets the pressed status of the specified button.
+ *
+ * @param button_id Identifier of the button (index in the buttons array).
+ * @param pressed New pressed status to assign to the button.
+ */
+void port_button_set_pressed (uint32_t button_id, bool pressed); 
 
-bool port_button_get_pending_interrupt (uint32_t button_id); /* Get the status of the interrupt line connected to the button*/
+/**
+ * @brief Checks if the interrupt for the specified button is pending.
+ *
+ * @param button_id Identifier of the button (index in the buttons array).
+ * @return true if an interrupt is pending, false otherwise.
+ */
+bool port_button_get_pending_interrupt (uint32_t button_id); 
 
-void port_button_clear_pending_interrupt (uint32_t button_id); /* Clear the pending interrupt of the button*/
+/**
+ * @brief Clears the pending interrupt flag for the specified button.
+ *
+ * @param button_id Identifier of the button (index in the buttons array).
+ */
+void port_button_clear_pending_interrupt (uint32_t button_id); 
 
-void port_button_disable_interrupts (uint32_t button_id); /* Disable the interrupts of the button*/
+/**
+ * @brief Disables interrupts for the specified button.
+ *
+ * @param button_id Identifier of the button (index in the buttons array).
+ */
+void port_button_disable_interrupts (uint32_t button_id); 
 
 #endif

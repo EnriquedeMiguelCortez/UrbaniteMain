@@ -191,4 +191,33 @@ void GPIO_WritePin(GPIO_TypeDef *port, uint16_t pin, bool value);
  */
 void GPIO_TogglePin(GPIO_TypeDef *port, uint16_t pin);
 
+/**
+ * @brief Lee el valor del pin.
+ *
+ * @param p_port Puntero al puerto GPIO (por ejemplo, GPIOA, GPIOB, etc.).
+ * @param pin Número del pin dentro del puerto (0-15).
+ */
+
+bool stm32f4_system_gpio_read(GPIO_TypeDef *p_port, uint8_t pin);
+
+/**
+ * @brief Escribe un valor digital en un pin.
+ *
+ * @param p_port Puntero al puerto GPIO (por ejemplo, GPIOA, GPIOB, etc.).
+ * @param pin Número del pin dentro del puerto (0-15).
+ * @param value Valor lógico a escribir (true para 1, false para 0).
+ */
+
+void stm32f4_system_gpio_write(GPIO_TypeDef *p_port, uint8_t pin, bool value);
+
+/**
+ * @brief Alterna el valor de la GPIO.
+ *
+ * @param p_port Puntero al puerto GPIO (por ejemplo, GPIOA, GPIOB, etc.).
+ * @param pin Número del pin dentro del puerto (0-15).
+ */
+
+void stm32f4_system_gpio_toggle(GPIO_TypeDef * p_port, uint8_t pin);
+
+
 #endif /* STM32F4_SYSTEM_H_ */

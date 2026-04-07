@@ -297,6 +297,11 @@ void stm32f4_system_gpio_config_alternate(GPIO_TypeDef *p_port, uint8_t pin, uin
   p_port->AFR[(uint8_t)(pin / 8)] |= (alternate << displacement);
 }
 
+bool stm32f4_system_gpio_read(GPIO_TypeDef *p_port, uint8_t pin)
+{
+  return (p_port->IDR & BIT_POS_TO_MASK(pin)) != 0;
+}
+
 bool GPIO_ReadPin(GPIO_TypeDef *port, uint16_t pin) {
   // Leer el registro IDR del puerto GPIO
   uint32_t reg_value = port->IDR;
@@ -304,6 +309,15 @@ bool GPIO_ReadPin(GPIO_TypeDef *port, uint16_t pin) {
   // Aplicar la máscara para obtener el bit del pin específico
   return (bool)((reg_value & BIT_POS_TO_MASK(pin)) != 0);
 }
+
+
+void stm32f4_system_gpio_write(GPIO_TypeDef *p_port, uint8_t pin, bool value){
+  if (value == 1) {
+    p_port->BSRR = BIT_POS_TO_MASK(pin);  // Set pin
+  } else {
+    p_port->BSRR = BIT_POS_TO_MASK(pin + 16);  // Reset pin
+  }
+}	
 
 void GPIO_WritePin(GPIO_TypeDef *port, uint16_t pin, bool value) {
   if (value) {
@@ -314,6 +328,12 @@ void GPIO_WritePin(GPIO_TypeDef *port, uint16_t pin, bool value) {
       port->BSRR = BIT_POS_TO_MASK(pin) << 16;
   }
 }
+
+void stm32f4_system_gpio_toggle(GPIO_TypeDef * p_port, uint8_t pin)
+{
+  bool current_state = stm32f4_system_gpio_read(p_port, pin);
+  stm32f4_system_gpio_write(p_port, pin, !current_state);
+}	
 
 void GPIO_TogglePin(GPIO_TypeDef *port, uint16_t pin) {
   // Leer el estado actual del pin
@@ -326,3 +346,39 @@ void GPIO_TogglePin(GPIO_TypeDef *port, uint16_t pin) {
 // ------------------------------------------------------
 // POWER RELATED FUNCTIONS
 // ------------------------------------------------------
+
+void port_system_power_stop()
+{
+ MODIFY_REG(PWR->CR, (PWR_CR_PDDS | PWR_CR_LPDS), PWR_CR_LPDS);   // Select the regulator state in Stop mode: Set PDDS and LPDS bits according to PWR_Regulator value
+ SCB->SCR |= ((uint32_t)SCB_SCR_SLEEPDEEP_Msk);   // Set SLEEPDEEP bit of Cortex System Control Register
+ __WFI(); // Select Stop mode entry : Request Wait For Interrupt
+ SCB->SCR &= ~((uint32_t)SCB_SCR_SLEEPDEEP_Msk); // Reset SLEEPDEEP bit of Cortex System Control Register
+}
+
+void port_system_power_sleep()
+{
+ MODIFY_REG(PWR->CR, (PWR_CR_PDDS | PWR_CR_LPDS), PWR_CR_LPDS);   // Select the regulator state in Stop mode: Set PDDS and LPDS bits according to PWR_Regulator value
+ SCB->SCR &= ~((uint32_t)SCB_SCR_SLEEPDEEP_Msk);   // Reset SLEEPDEEP bit of Cortex System Control Register
+ __WFI(); // Select Sleep mode entry : Request Wait For Interrupt
+}
+
+// ------------------------------------------------------
+// TIMER RELATED FUNCTIONS
+// ------------------------------------------------------
+
+void port_system_systick_suspend()
+{
+ SysTick->CTRL &= ~SysTick_CTRL_TICKINT_Msk;
+}
+
+void port_system_systick_resume()
+{
+  SysTick->CTRL |= SysTick_CTRL_TICKINT_Msk;
+}
+
+
+void port_system_sleep(void)
+{
+  port_system_systick_suspend();
+  port_system_power_sleep();
+}	

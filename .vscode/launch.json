@@ -133,12 +133,15 @@
           "test_port_button",
           "test_fsm_button",
           "example_v1",
-          "test_port_ultrasound",
+          "test_port_ultrasound_timer_trigger",
+          "test_port_ultrasound_timer_echo",
+          "test_port_ultrasound_timer_measurements",
           "test_fsm_ultrasound",
           "example_v2",
           "test_port_display",
           "test_fsm_display",
           "example_v3",
+          "example_v5"
         ]
       }
 		}
