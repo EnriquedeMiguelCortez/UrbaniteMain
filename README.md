@@ -7,7 +7,7 @@
 
 El proyecto consiste en un sistema que ayude al aparcamiento mediante un sensor de ultrasonidos y un LED RGB para informar al conductor de la distancia al obstáculo. El cerebro de nuestro sistema es una placa sobre la que implementamos la medición de la distancia y un LED que variará de color dependiendo de esa distancia.
 
-![Captura de la V4 en el osciloscopio](docs/assets/imgs/image.png)
+![Captura de la V4 en el osciloscopio](docs/assets/imgs/OsciloscopioV4.jpg)
 
 En el siguiente enlace, se muestra un video con las funcionalidades de la V5:
 
@@ -111,13 +111,13 @@ El objetivo es visualizar la distancia al obstáculo detectado por el sensor de 
 * Frecuencia PWM: 50 Hz.
 * Control de intensidad por ciclo de trabajo.
 * Mapeo de colores:
-| Distancia | Color LED | 
-| --------- | --------- | 
-| 0-25 cm   | Rojo      |
-| 25-50 cm  | Amarillo  | 
-| 50-150 cm | Verde     |
-| 150-175 cm| Turquesa  |
-| 175-200 cm| Azul      |
+| Distancia  | Color LED | 
+| ---------  | --------- | 
+| 0-25 cm    | Rojo      |
+| 25-50 cm   | Amarillo  | 
+| 50-150 cm  | Verde     |
+| 150-175 cm | Turquesa  |
+| 175-200 cm | Azul      |
 
 
 Características del display para mostrar distancia y su temporizador:
