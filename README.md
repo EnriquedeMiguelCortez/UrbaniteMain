@@ -2,8 +2,8 @@
 
 ## Authors
 
-* **Sergio Rojas Castilla** - email: [sergio.rojas@alumno.es](mailto:sergio.rojas@alumno.es)
-* **Enrique De Miguel Cortez** - email: [enrique.demiguel@alumnos.es](mailto:enrique.demiguel@alumno.es)
+* **Sergio Rojas Castilla** 
+* **Enrique De Miguel Cortez** 
 
 El proyecto consiste en un sistema que ayude al aparcamiento mediante un sensor de ultrasonidos y un LED RGB para informar al conductor de la distancia al obstáculo. El cerebro de nuestro sistema es una placa sobre la que implementamos la medición de la distancia y un LED que variará de color dependiendo de esa distancia.
 
