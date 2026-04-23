@@ -110,7 +110,8 @@ El objetivo es visualizar la distancia al obstáculo detectado por el sensor de 
 * Temporizador: TIM4, modo PWM 1.
 * Frecuencia PWM: 50 Hz.
 * Control de intensidad por ciclo de trabajo.
-* Mapeo de colores:
+
+Mapeo de colores:
 | Distancia | Color LED |
 |-----------|------------|
 | 0-25 cm   | Rojo       |
