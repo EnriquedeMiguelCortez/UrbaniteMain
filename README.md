@@ -7,7 +7,7 @@
 
 El proyecto consiste en un sistema que ayude al aparcamiento mediante un sensor de ultrasonidos y un LED RGB para informar al conductor de la distancia al obstáculo. El cerebro de nuestro sistema es una placa sobre la que implementamos la medición de la distancia y un LED que variará de color dependiendo de esa distancia.
 
-![Captura de la V4 en el osciloscopio](docs/assets/imgs/OsciloscopioV4.jpg)
+![Captura de la V4 en el osciloscopio](docs/assets/imgs/Osciloscopio.jpg)
 
 En el siguiente enlace, se muestra un video con las funcionalidades de la V5:
 
